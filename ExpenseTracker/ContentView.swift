@@ -14,19 +14,19 @@ struct ContentView: View {
     @State private var activeTab: Tab = .recents
     var body: some View {
         TabView(selection: $activeTab) {
-            Text(Tab.recents.rawValue)
+            Recents()
                 .tag(Tab.recents)
                 .tabItem { Tab.recents.tabContent }
             
-            Text(Tab.search.rawValue)
+            Search()
                 .tag(Tab.search)
                 .tabItem { Tab.search.tabContent }
             
-            Text(Tab.charts.rawValue)
+            Graphs()
                 .tag(Tab.charts)
                 .tabItem { Tab.charts.tabContent }
             
-            Text(Tab.settings.rawValue)
+            Settings()
                 .tag(Tab.settings)
                 .tabItem { Tab.settings.tabContent }
         }
