@@ -28,7 +28,18 @@ struct Recents: View {
     }
     
     /// Header View
-    
+    @ViewBuilder
+    func headerView(_ size: CGSize) -> some View {
+        VStack(alignment: .leading, spacing: 5) {
+            Text("Welcome")
+                .font(.title.bold())
+        }
+        .hSpacing(.leading)
+        .background {
+            Rectangle()
+                .padding(.horizontal, -15)
+        }
+    }
 }
 
 #Preview {
