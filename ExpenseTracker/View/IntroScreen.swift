@@ -19,11 +19,11 @@ struct IntroScreen: View {
                 .padding(.bottom, 35)
             
             VStack(alignment: .leading, spacing: 25) {
-                pointView(symbol: "dollarsign", title: "Transactions", subTitle: "Keep track of your earnings and expenses.")
+                PointView(symbol: "dollarsign", title: "Transactions", subTitle: "Keep track of your earnings and expenses.")
                 
-                pointView(symbol: "chart.bar.fill", title: "Visual Charts", subTitle: "View your transactions using eye-catching graphic representations.")
+                PointView(symbol: "chart.bar.fill", title: "Visual Charts", subTitle: "View your transactions using eye-catching graphic representations.")
                 
-                pointView(symbol: "magnifyingglass", title: "Advance Filters", subTitle: "Find the expenses you want by advance search and filtering.")
+                PointView(symbol: "magnifyingglass", title: "Advance Filters", subTitle: "Find the expenses you want by advance search and filtering.")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 15)
@@ -47,7 +47,7 @@ struct IntroScreen: View {
     
     /// Points View
     @ViewBuilder
-    func pointView(symbol: String, title: String, subTitle: String) -> some View {
+    func PointView(symbol: String, title: String, subTitle: String) -> some View {
         HStack(spacing: 15) {
             Image(systemName: symbol)
                 .font(.largeTitle)

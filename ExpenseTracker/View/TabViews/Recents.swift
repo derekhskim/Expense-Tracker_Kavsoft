@@ -19,7 +19,7 @@ struct Recents: View {
                         Section {
                             
                         } header: {
-                            
+                            HeaderView(size)
                         }
                     }
                 }
@@ -29,7 +29,7 @@ struct Recents: View {
     
     /// Header View
     @ViewBuilder
-    func headerView(_ size: CGSize) -> some View {
+    func HeaderView(_ size: CGSize) -> some View {
         VStack(alignment: .leading, spacing: 5) {
             Text("Welcome")
                 .font(.title.bold())
