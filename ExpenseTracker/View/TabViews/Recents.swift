@@ -37,7 +37,12 @@ struct Recents: View {
                             CardView(income: 2039, expense: 4098)
                             
                             /// Custom Segment Control
-                            CustomSegmentedControl()
+                            CustomSegmentControl()
+                                .padding(.bottom, 10)
+                            
+                            ForEach(sampleTransaction.filter({ $0.category == selectedCategory.rawValue })) { transaction in
+                                TransactionCardView(transaction: transaction)
+                            }
                         } header: {
                             HeaderView(size)
                         }
