@@ -25,6 +25,7 @@
 		65555CEB2B28025C0021BE8E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65555CEA2B28025C0021BE8E /* Settings.swift */; };
 		6565476A2B29451D004E6DD0 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656547692B29451D004E6DD0 /* Date+.swift */; };
 		6565476D2B297B6E004E6DD0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6565476C2B297B6E004E6DD0 /* CardView.swift */; };
+		65812AB42B2EC1A200E90CB9 /* SwipeAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65812AB32B2EC1A200E90CB9 /* SwipeAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		65555CEA2B28025C0021BE8E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		656547692B29451D004E6DD0 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		6565476C2B297B6E004E6DD0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		65812AB32B2EC1A200E90CB9 /* SwipeAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 			children = (
 				6565476C2B297B6E004E6DD0 /* CardView.swift */,
 				6503B1EC2B2BFA210068017D /* TransactionCardView.swift */,
+				65812AB32B2EC1A200E90CB9 /* SwipeAction.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				65555CE52B28025C0021BE8E /* Recents.swift in Sources */,
 				65555CE02B28025C0021BE8E /* Transaction.swift in Sources */,
 				6565476D2B297B6E004E6DD0 /* CardView.swift in Sources */,
+				65812AB42B2EC1A200E90CB9 /* SwipeAction.swift in Sources */,
 				65555CC82B28025B0021BE8E /* ContentView.swift in Sources */,
 				65555CD72B28025C0021BE8E /* IntroScreen.swift in Sources */,
 				65555CDC2B28025C0021BE8E /* Tab.swift in Sources */,
