@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SwipeAction<Content: View>: View {
     @ViewBuilder var content: Content
+    @ActionBuilder var actions: [Action]
     var body: some View {
         ScrollViewReader { scrollProxy in
             ScrollView(.horizontal) {
@@ -34,6 +35,13 @@ struct Action: Identifiable {
     var iconTint: Color = .white
     var isEnabled: Bool = true
     var action: () -> ()
+}
+
+@resultBuilder
+struct ActionBuilder {
+    static func buildBlock(_ components: Action...) -> [Action] {
+        return components
+    }
 }
 
 #Preview {
