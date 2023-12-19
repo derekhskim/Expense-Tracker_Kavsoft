@@ -53,22 +53,22 @@ struct Recents: View {
                     .padding(15)
                 }
                 .background(.gray.opacity(0.15))
+                .blur(radius: showFilterView ? 8 : 0)
+                .disabled(showFilterView)
             }
             .overlay {
-                ZStack {
-                    if showFilterView {
-                        DateFilterView(start: startDate, end: endDate, onSubmit: { start, end in
-                            startDate = start
-                            endDate = end
-                            showFilterView = true
-                        }, onClose: {
-                            showFilterView = false
-                        })
-                            .transition(.move(edge: .leading))
-                    }
+                if showFilterView {
+                    DateFilterView(start: startDate, end: endDate, onSubmit: { start, end in
+                        startDate = start
+                        endDate = end
+                        showFilterView = true
+                    }, onClose: {
+                        showFilterView = false
+                    })
+                    .transition(.move(edge: .leading))
                 }
-                .animation(.snappy, value: showFilterView)
             }
+            .animation(.snappy, value: showFilterView)
         }
     }
     
