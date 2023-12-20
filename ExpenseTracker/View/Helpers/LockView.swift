@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 /// Custom View
 struct LockView<Content: View>: View {
@@ -21,6 +22,10 @@ struct LockView<Content: View>: View {
     @State private var animateField: Bool = false
     @State private var isUnlocked: Bool = false
     @State private var noBiometricAccess: Bool = false
+    /// Lock Context
+    let context = LAContext()
+    /// Scene Phase
+    @Environment(\.scenePhase) private var phase
     var body: some View {
         GeometryReader {
             let size = $0.size
@@ -80,10 +85,36 @@ struct LockView<Content: View>: View {
                 .transition(.offset(y: size.height + 100))
             }
         }
+        .onChange(of: isEnabled, initial: true) { oldValue, newValue in
+            if newValue {
+                unlockView()
+            }
+        }
     }
     
     private func unlockView() {
-        
+        /// Checking and Unlocking View
+        Task {
+            if isBiometricAvailable  && lockType != .number {
+                /// Requesting Biometric Unlock
+                if let result = try? await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock the View"), result {
+                    print("Unlocked")
+                    withAnimation(.snappy, completionCriteria: .logicallyComplete) {
+                        isUnlocked = true
+                    } completion: {
+                        pin = ""
+                    }
+                }
+            }
+            
+            /// No Bio Metric Permission || Lock Type Must be Set as Keypad
+            /// Updating Biometric Status
+            noBiometricAccess = !isBiometricAvailable
+        }
+    }
+    
+    private var isBiometricAvailable: Bool {
+        return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
     /// Numberpad Pin View
@@ -95,8 +126,11 @@ struct LockView<Content: View>: View {
                 .frame(maxWidth: .infinity)
                 .overlay(alignment: .leading) {
                     /// Back button only for Both Lock Type
-                    if lockType == .both {
-                        Button(action: {}, label: {
+                    if lockType == .both && isBiometricAvailable {
+                        Button(action: {
+                            pin = ""
+                            noBiometricAccess = false
+                        }, label: {
                             Image(systemName: "arrow.left")
                                 .font(.title3)
                                 .contentShape(.rect)
