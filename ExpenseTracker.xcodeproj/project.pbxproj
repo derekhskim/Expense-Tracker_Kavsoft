@@ -10,6 +10,7 @@
 		6503B1ED2B2BFA210068017D /* TransactionCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6503B1EC2B2BFA210068017D /* TransactionCardView.swift */; };
 		6533EA3C2B27EB78009CBC5F /* View+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6533EA3B2B27EB78009CBC5F /* View+.swift */; };
 		6540D4BE2B31693800169ED5 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6540D4BD2B31693800169ED5 /* DateFilterView.swift */; };
+		6540D4C02B32BE7000169ED5 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6540D4BF2B32BE7000169ED5 /* LockView.swift */; };
 		65555CC62B28025B0021BE8E /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65555CC52B28025B0021BE8E /* ExpenseTrackerApp.swift */; };
 		65555CC82B28025B0021BE8E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65555CC72B28025B0021BE8E /* ContentView.swift */; };
 		65555CCA2B28025C0021BE8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65555CC92B28025C0021BE8E /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		6503B1EC2B2BFA210068017D /* TransactionCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCardView.swift; sourceTree = "<group>"; };
 		6533EA3B2B27EB78009CBC5F /* View+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+.swift"; sourceTree = "<group>"; };
 		6540D4BD2B31693800169ED5 /* DateFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
+		6540D4BF2B32BE7000169ED5 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		65555CC22B28025B0021BE8E /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65555CC52B28025B0021BE8E /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		65555CC72B28025B0021BE8E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				65812AB92B3026B600E90CB9 /* CustomTransition.swift */,
 				65812ABB2B30274C00E90CB9 /* OffsetKey.swift */,
 				6540D4BD2B31693800169ED5 /* DateFilterView.swift */,
+				6540D4BF2B32BE7000169ED5 /* LockView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				65555CDE2B28025C0021BE8E /* Category.swift in Sources */,
 				6540D4BE2B31693800169ED5 /* DateFilterView.swift in Sources */,
 				6503B1ED2B2BFA210068017D /* TransactionCardView.swift in Sources */,
+				6540D4C02B32BE7000169ED5 /* LockView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
