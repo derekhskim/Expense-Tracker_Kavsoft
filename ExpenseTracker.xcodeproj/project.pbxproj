@@ -158,14 +158,14 @@
 		6565476B2B297B66004E6DD0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				6565476C2B297B6E004E6DD0 /* CardView.swift */,
-				6503B1EC2B2BFA210068017D /* TransactionCardView.swift */,
-				65812AB32B2EC1A200E90CB9 /* SwipeAction.swift */,
 				65812AB72B2FDFE900E90CB9 /* Action.swift */,
+				6565476C2B297B6E004E6DD0 /* CardView.swift */,
 				65812AB92B3026B600E90CB9 /* CustomTransition.swift */,
-				65812ABB2B30274C00E90CB9 /* OffsetKey.swift */,
 				6540D4BD2B31693800169ED5 /* DateFilterView.swift */,
 				6540D4BF2B32BE7000169ED5 /* LockView.swift */,
+				65812ABB2B30274C00E90CB9 /* OffsetKey.swift */,
+				65812AB32B2EC1A200E90CB9 /* SwipeAction.swift */,
+				6503B1EC2B2BFA210068017D /* TransactionCardView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

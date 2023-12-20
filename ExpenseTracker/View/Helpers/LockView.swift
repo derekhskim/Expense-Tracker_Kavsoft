@@ -22,8 +22,6 @@ struct LockView<Content: View>: View {
     @State private var animateField: Bool = false
     @State private var isUnlocked: Bool = false
     @State private var noBiometricAccess: Bool = false
-    /// Lock Context
-    let context = LAContext()
     /// Scene Phase
     @Environment(\.scenePhase) private var phase
     var body: some View {
@@ -100,6 +98,9 @@ struct LockView<Content: View>: View {
     }
     
     private func unlockView() {
+        /// Lock Context
+        let context = LAContext()
+        
         /// Checking and Unlocking View
         Task {
             if isBiometricAvailable  && lockType != .number {
@@ -120,6 +121,9 @@ struct LockView<Content: View>: View {
     }
     
     private var isBiometricAvailable: Bool {
+        /// Lock Context
+        let context = LAContext()
+        
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
