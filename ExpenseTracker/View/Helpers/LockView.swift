@@ -90,6 +90,13 @@ struct LockView<Content: View>: View {
                 unlockView()
             }
         }
+        /// Locking When App Goes Background
+        .onChange(of: phase) { oldValue, newValue in
+            if newValue != .active && lockWhenAppGoesBackground {
+                isUnlocked = false
+                pin = ""
+            }
+        }
     }
     
     private func unlockView() {
@@ -98,7 +105,6 @@ struct LockView<Content: View>: View {
             if isBiometricAvailable  && lockType != .number {
                 /// Requesting Biometric Unlock
                 if let result = try? await context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: "Unlock the View"), result {
-                    print("Unlocked")
                     withAnimation(.snappy, completionCriteria: .logicallyComplete) {
                         isUnlocked = true
                     } completion: {
@@ -234,15 +240,14 @@ struct LockView<Content: View>: View {
                 if newValue.count == 4 {
                     /// Validate Pin
                     if lockPin == pin {
-//                        print("Unlocked")
                         withAnimation(.snappy, completionCriteria: .logicallyComplete) {
                             isUnlocked = true
                         } completion: {
                             /// Clearing Pin
                             pin = ""
+                            noBiometricAccess = !isBiometricAvailable
                         }
                     } else {
-                        print("Wrong Pin")
                         pin = ""
                         animateField.toggle()
                     }
