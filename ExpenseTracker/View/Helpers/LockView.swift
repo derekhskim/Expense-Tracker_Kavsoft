@@ -20,6 +20,7 @@ struct LockView<Content: View>: View {
     @State private var pin: String = ""
     @State private var animateField: Bool = false
     @State private var isUnlocked: Bool = false
+    @State private var noBiometricAccess: Bool = false
     var body: some View {
         GeometryReader {
             let size = $0.size
@@ -30,27 +31,80 @@ struct LockView<Content: View>: View {
             if isEnabled && !isUnlocked {
                 ZStack {
                     Rectangle()
+                        .fill(.black)
                         .ignoresSafeArea()
                     
-                    if lockType == .both || lockType == .biometric {
-                        
+                    if (lockType == .both && !noBiometricAccess) || lockType == .biometric {
+                        Group {
+                            if noBiometricAccess {
+                                Text("Enable biometric authentication in Settings to unlock the view.")
+                                    .font(.callout)
+                                    .multilineTextAlignment(.center)
+                                    .padding(50)
+                            } else {
+                                /// Bio Metric / Pin Unlock
+                                VStack(spacing: 12) {
+                                    VStack(spacing: 6) {
+                                        Image(systemName: "lock")
+                                            .font(.largeTitle)
+                                        
+                                        Text("Tap to Unlock")
+                                            .font(.caption2)
+                                            .foregroundStyle(.gray)
+                                    }
+                                    .frame(width: 100, height: 100)
+                                    .background(.ultraThinMaterial, in: .rect(cornerRadius: 10))
+                                    .contentShape(.rect)
+                                    .onTapGesture {
+                                        unlockView()
+                                    }
+                                    
+                                    if lockType == .both {
+                                        Text("Enter Pin")
+                                            .frame(width: 100, height: 40)
+                                            .background(.ultraThinMaterial, in: .rect(cornerRadius: 10))
+                                            .contentShape(.rect)
+                                            .onTapGesture {
+                                                noBiometricAccess = true
+                                            }
+                                    }
+                                }
+                            }
+                        }
                     } else {
                         /// Custom Number Pad to type View Lock Pin
                         NumberPadPinView()
                     }
                 }
+                .environment(\.colorScheme, .dark)
                 .transition(.offset(y: size.height + 100))
             }
         }
     }
     
+    private func unlockView() {
+        
+    }
+    
     /// Numberpad Pin View
     @ViewBuilder
-    func NumberPadPinView() -> some View {
+    private func NumberPadPinView() -> some View {
         VStack(spacing: 15) {
             Text("Enter Pin")
                 .font(.title.bold())
                 .frame(maxWidth: .infinity)
+                .overlay(alignment: .leading) {
+                    /// Back button only for Both Lock Type
+                    if lockType == .both {
+                        Button(action: {}, label: {
+                            Image(systemName: "arrow.left")
+                                .font(.title3)
+                                .contentShape(.rect)
+                        })
+                        .tint(.white)
+                        .padding(.leading)
+                    }
+                }
             
             /// Adding Wiggling Animation for Wrong Password With Keyframe Animator
             
