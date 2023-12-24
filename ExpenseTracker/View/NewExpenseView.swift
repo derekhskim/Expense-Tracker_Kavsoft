@@ -34,6 +34,10 @@ struct NewExpenseView: View {
                         category: category,
                         tintColor: tint
                     ))
+                
+                CustomSection("Title", "Magic Keyboard", value: $title)
+                CustomSection("Remarks", "Apple Product!", value: $remarks)
+                
             }
             .padding(15)
         }
@@ -41,7 +45,20 @@ struct NewExpenseView: View {
         .background(.gray.opacity(0.15))
     }
     
-    
+    @ViewBuilder
+    func CustomSection(_ title: String, _ hint: String, value: Binding<String>) -> some View {
+        VStack(alignment: .leading, spacing: 10, content: {
+            Text(title)
+                .font(.caption)
+                .foregroundStyle(.gray)
+                .hSpacing(.leading)
+            
+            TextField(hint, text: value)
+                .padding(.horizontal, 15)
+                .padding(.vertical, 12)
+                .background(.background, in: .rect(cornerRadius: 10))
+        })
+    }
 }
 
 #Preview {
