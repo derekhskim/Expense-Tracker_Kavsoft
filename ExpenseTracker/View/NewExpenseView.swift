@@ -38,6 +38,22 @@ struct NewExpenseView: View {
                 CustomSection("Title", "Magic Keyboard", value: $title)
                 CustomSection("Remarks", "Apple Product!", value: $remarks)
                 
+                /// Amount & Category Check Box
+                VStack(alignment: .leading, spacing: 10, content: {
+                    Text("Amount & Category")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .hSpacing(.leading)
+                    
+                    HStack(spacing: 15) {
+                        TextField("0.0", value: $amount, formatter: numberFormatter)
+                            .padding(.horizontal, 15)
+                            .padding(.vertical, 12)
+                            .background(.background, in: .rect(cornerRadius: 10))
+                            .frame(maxWidth: 130)
+                            .keyboardType(.decimalPad)
+                    }
+                })
             }
             .padding(15)
         }
@@ -58,6 +74,15 @@ struct NewExpenseView: View {
                 .padding(.vertical, 12)
                 .background(.background, in: .rect(cornerRadius: 10))
         })
+    }
+    
+    /// Number Formatter
+    var numberFormatter: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        
+        return formatter
     }
 }
 
