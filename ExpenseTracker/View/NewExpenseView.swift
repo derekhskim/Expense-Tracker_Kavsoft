@@ -52,6 +52,9 @@ struct NewExpenseView: View {
                             .background(.background, in: .rect(cornerRadius: 10))
                             .frame(maxWidth: 130)
                             .keyboardType(.decimalPad)
+                        
+                        /// Custom Check Box
+                        CategoryCheckBox()
                     }
                 })
             }
@@ -74,6 +77,40 @@ struct NewExpenseView: View {
                 .padding(.vertical, 12)
                 .background(.background, in: .rect(cornerRadius: 10))
         })
+    }
+    
+    /// Custom CheckBox
+    @ViewBuilder
+    func CategoryCheckBox() -> some View {
+        HStack(spacing: 10) {
+            ForEach(Category.allCases, id: \.rawValue) { category in
+                HStack(spacing: 5) {
+                    ZStack {
+                        Image(systemName: "circle")
+                            .font(.title3)
+                            .foregroundStyle(appTint)
+                        
+                        if self.category == category
+                        {
+                            Image(systemName: "circle.fill")
+                                .font(.caption)
+                                .foregroundStyle(appTint)
+                        }
+                    }
+                    
+                    Text(category.rawValue)
+                        .font(.caption)
+                }
+                .contentShape(.rect)
+                .onTapGesture {
+                    self.category = category
+                }
+            }
+        }
+        .padding(.horizontal, 15)
+        .padding(.vertical, 12)
+        .hSpacing(.leading)
+        .background(.background, in: .rect(cornerRadius: 10))
     }
     
     /// Number Formatter
