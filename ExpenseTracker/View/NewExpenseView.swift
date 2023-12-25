@@ -76,6 +76,16 @@ struct NewExpenseView: View {
         }
         .navigationTitle("Add Transaction")
         .background(.gray.opacity(0.15))
+        .toolbar(content: {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button("Save", action: save)
+            }
+        })
+    }
+    
+    /// Saving Data
+    func save() {
+        
     }
     
     @ViewBuilder
@@ -138,5 +148,7 @@ struct NewExpenseView: View {
 }
 
 #Preview {
-    NewExpenseView()
+    NavigationStack {
+        NewExpenseView()
+    }
 }
