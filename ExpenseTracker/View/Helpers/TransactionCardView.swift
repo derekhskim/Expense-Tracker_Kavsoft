@@ -49,5 +49,5 @@ struct TransactionCardView: View {
 }
 
 #Preview {
-    TransactionCardView(transaction: sampleTransaction[0])
+    ContentView()
 }
