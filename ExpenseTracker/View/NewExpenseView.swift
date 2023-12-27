@@ -104,9 +104,18 @@ struct NewExpenseView: View {
     
     /// Saving Data
     func save() {
-        /// Saving Item to SwiftData
-        let transaction = Transaction(title: title, remarks: remarks, amount: amount, dateAdded: dateAdded, category: category, tintColor: tint)
-        context.insert(transaction)
+        if editTransaction != nil {
+            editTransaction?.title = title
+            editTransaction?.remarks = remarks
+            editTransaction?.amount = amount
+            editTransaction?.category = category.rawValue
+            editTransaction?.dateAdded = dateAdded
+        } else {
+            /// Saving Item to SwiftData
+            let transaction = Transaction(title: title, remarks: remarks, amount: amount, dateAdded: dateAdded, category: category, tintColor: tint)
+            context.insert(transaction)
+        }
+        
         /// Dismissing View
         dismiss()
     }
