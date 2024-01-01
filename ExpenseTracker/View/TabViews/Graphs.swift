@@ -6,10 +6,16 @@
 //
 
 import SwiftUI
+import Charts
+import SwiftData
 
 struct Graphs: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.vertical) {
+            LazyVStack(spacing: 10) {
+                /// Chart View
+            }
+        }
     }
 }
 
