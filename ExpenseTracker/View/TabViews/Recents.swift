@@ -18,7 +18,6 @@ struct Recents: View {
     @State private var selectedCategory: Category = .expense
     /// Animation
     @Namespace private var animation
-    @Query(sort: [SortDescriptor(\Transaction.dateAdded, order: .reverse)], animation: .snappy) private var transactions: [Transaction]
     var body: some View {
         GeometryReader {
             /// For Animation Purpose
@@ -38,20 +37,28 @@ struct Recents: View {
                             })
                             .hSpacing(.leading)
                             
-                            /// Card View
-                            CardView(income: 2039, expense: 4098)
-                            
-                            /// Custom Segment Control
-                            CustomSegmentControl()
-                                .padding(.bottom, 10)
-                            
-                            ForEach(transactions) { transaction in
-                                NavigationLink {
-                                    TransactionView(editTransaction: transaction)
-                                } label: {
-                                    TransactionCardView(transaction: transaction)
+                            FilterTransactionsView(startDate: startDate, endDate: endDate) { transactions in
+                                /// Card View
+                                CardView(
+                                    income: total(transactions, category: .income),
+                                    expense: total(
+                                        transactions,
+                                        category: .expense
+                                    )
+                                )
+                                
+                                /// Custom Segment Control
+                                CustomSegmentControl()
+                                    .padding(.bottom, 10)
+                                
+                                ForEach(transactions) { transaction in
+                                    NavigationLink {
+                                        TransactionView(editTransaction: transaction)
+                                    } label: {
+                                        TransactionCardView(transaction: transaction)
+                                    }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
                             }
                         } header: {
                             HeaderView(size)
