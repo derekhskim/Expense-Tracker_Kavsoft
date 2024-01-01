@@ -41,10 +41,7 @@ struct Recents: View {
                                 /// Card View
                                 CardView(
                                     income: total(transactions, category: .income),
-                                    expense: total(
-                                        transactions,
-                                        category: .expense
-                                    )
+                                    expense: total(transactions, category: .expense)
                                 )
                                 
                                 /// Custom Segment Control
@@ -52,9 +49,7 @@ struct Recents: View {
                                     .padding(.bottom, 10)
                                 
                                 ForEach(transactions) { transaction in
-                                    NavigationLink {
-                                        TransactionView(editTransaction: transaction)
-                                    } label: {
+                                    NavigationLink(value: transaction) {
                                         TransactionCardView(transaction: transaction)
                                     }
                                     .buttonStyle(.plain)
@@ -69,6 +64,9 @@ struct Recents: View {
                 .background(.gray.opacity(0.15))
                 .blur(radius: showFilterView ? 8 : 0)
                 .disabled(showFilterView)
+                .navigationDestination(for: Transaction.self) { transaction in
+                    TransactionView(editTransaction: transaction)
+                }
             }
             .overlay {
                 if showFilterView {
