@@ -18,8 +18,9 @@ struct Graphs: View {
             ScrollView(.vertical) {
                 LazyVStack(spacing: 10) {
                     ChartView()
-                        .padding(10)
                         .frame(height: 200)
+                        .padding(10)
+                        .padding(.top, 10)
                         .background(.background, in: .rect(cornerRadius: 10))
                 }
                 .padding(15)
@@ -51,6 +52,7 @@ struct Graphs: View {
         }
         /// Making Chart Scrollable
         .chartScrollableAxes(.horizontal)
+        .chartXVisibleDomain(length: 4)
         /// Foreground Colors
         .chartForegroundStyleScale(range: [Color.green.gradient, Color.red.gradient])
     }
