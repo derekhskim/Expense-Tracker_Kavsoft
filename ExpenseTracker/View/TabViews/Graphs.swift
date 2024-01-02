@@ -22,6 +22,10 @@ struct Graphs: View {
                     .background(.background, in: .rect(cornerRadius: 10))
             }
         }
+        .onAppear {
+            /// Creating Chart Group
+            createChartGroup()
+        }
     }
     
     @ViewBuilder
@@ -40,6 +44,14 @@ struct Graphs: View {
                 }
             }
         }
+        /// Making Chart Scrollable
+        .chartScrollableAxes(.horizontal)
+        /// Foreground Colors
+        .chartForegroundStyleScale(range: [Color.green.gradient, Color.red.gradient])
+    }
+    
+    func createChartGroup() {
+        
     }
 }
 
