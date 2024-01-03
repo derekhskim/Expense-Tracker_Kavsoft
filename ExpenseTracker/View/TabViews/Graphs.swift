@@ -22,6 +22,17 @@ struct Graphs: View {
                         .padding(10)
                         .padding(.top, 10)
                         .background(.background, in: .rect(cornerRadius: 10))
+                    
+                    ForEach(chartGroups) { group in
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(format(date: group.date, format: "MMM yyyy"))
+                                .font(.caption)
+                                .foregroundStyle(.gray)
+                                .hSpacing(.leading)
+                            
+                            CardView(income: group.totalIncome, expense: group.totalExpense)
+                        }
+                    }
                 }
                 .padding(15)
             }
