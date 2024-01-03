@@ -30,7 +30,11 @@ struct Graphs: View {
                                 .foregroundStyle(.gray)
                                 .hSpacing(.leading)
                             
-                            CardView(income: group.totalIncome, expense: group.totalExpense)
+                            NavigationLink {
+                                ListOfExpenses(month: group.date)
+                            } label: {
+                                CardView(income: group.totalIncome, expense: group.totalExpense)
+                            }
                         }
                     }
                 }
@@ -129,6 +133,52 @@ struct Graphs: View {
         let kValue = intValue / 1000
         
         return intValue < 1000 ? "\(intValue)" : "\(kValue)K"
+    }
+}
+
+/// List of Transactions for the Selected Month
+struct ListOfExpenses: View {
+    var month: Date
+    var body: some View {
+        ScrollView(.vertical) {
+            LazyVStack(spacing: 15) {
+                Section {
+                    FilterTransactionsView(startDate: month.startOfMonth, endDate: month.endOfMonth, category: .income) { transactions in
+                        ForEach(transactions) { transaction in
+                            NavigationLink(value: transaction) {
+                                TransactionCardView(transaction: transaction)
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Income")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .hSpacing(.leading)
+                }
+                
+                Section {
+                    FilterTransactionsView(startDate: month.startOfMonth, endDate: month.endOfMonth, category: .expense) { transactions in
+                        ForEach(transactions) { transaction in
+                            NavigationLink(value: transaction) {
+                                TransactionCardView(transaction: transaction)
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Expense")
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+                        .hSpacing(.leading)
+                }
+            }
+            .padding(15)
+        }
+        .background(.gray.opacity(0.15))
+        .navigationTitle(format(date: month, format: "MMMM yyyy"))
+        .navigationDestination(for: Transaction.self) { transaction in
+            TransactionView(editTransaction: transaction)
+        }
     }
 }
 
