@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct TransactionCardView: View {
     @Environment(\.modelContext) private var context
@@ -54,6 +55,8 @@ struct TransactionCardView: View {
         } actions: {
             Action(tint: .red, icon: "trash") {
                 context.delete(transaction)
+                /// Updating Widgets
+                WidgetCenter.shared.reloadAllTimelines()
             }
         }
     }
