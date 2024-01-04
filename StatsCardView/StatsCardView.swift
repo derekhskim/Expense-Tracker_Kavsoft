@@ -54,6 +54,7 @@ struct StatsCardView: Widget {
                 .containerBackground(.fill.tertiary, for: .widget)
                 .modelContainer(for: Transaction.self)
         }
+        .supportedFamilies([.systemMedium])
         .contentMarginsDisabled()
         .configurationDisplayName("Expense Widget")
         .description("This is a Card View Widget for Expense Tracker Application.")
