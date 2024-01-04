@@ -52,6 +52,7 @@ struct StatsCardView: Widget {
         StaticConfiguration(kind: kind, provider: Provider()) { entry in
             StatsCardViewEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
+                .modelContainer(for: Transaction.self)
         }
         .contentMarginsDisabled()
         .configurationDisplayName("Expense Widget")
