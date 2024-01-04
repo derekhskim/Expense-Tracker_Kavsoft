@@ -36,8 +36,11 @@ struct StatsCardViewEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            
+        FilterTransactionsView(startDate: .now.startOfMonth, endDate: .now.endOfMonth) { transactions in
+            CardView(
+                income: total(transactions, category: .income),
+                expense: total(transactions, category: .expense)
+            )
         }
     }
 }
